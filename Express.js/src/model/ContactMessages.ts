@@ -7,7 +7,7 @@ method:
 
 */
 
-export class contactMessage
+class contactMessage
 {
     public static  contactMessageSchema():any{
        return new  mongoose.Schema({
@@ -21,12 +21,13 @@ export class contactMessage
     //creating the model function
 
 
-    public static Contact():any
-    {
-        //creating the model
-        return mongoose.model("Contact",this.contactMessageSchema());
-
-    }
-
 }
+
+
+
+
+
+    //creating the model
+export const ContactModel = mongoose.model("Contact",contactMessage.contactMessageSchema());
+
 
