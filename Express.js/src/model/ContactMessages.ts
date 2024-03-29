@@ -23,10 +23,6 @@ class contactMessage
 
 }
 
-
-
-
-
     //creating the model
 export const ContactModel = mongoose.model("Contact",contactMessage.contactMessageSchema());
 
