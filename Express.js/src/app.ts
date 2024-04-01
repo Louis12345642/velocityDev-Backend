@@ -1,6 +1,10 @@
 import express from "express";
 import Database from "./database/connection";
 import contactRouter from "./routes/ContactRoute";
+import cors from "cors"
+const corsOptions = {
+  origin: "http://127.0.0.1:5173",
+};
 
 
 
@@ -8,10 +12,11 @@ import contactRouter from "./routes/ContactRoute";
 *initialing the main app
 */
 const app = express()
+app.use(cors(corsOptions));
 
 
 //Database connections
-const DB_url = process.env.DB_URL || 'mongodb://127.0.0.1:27017/school';
+const DB_url = process.env.DB_URL || 'mongodb://127.0.0.1:27017/velocityAdminDB';
 const conn = new Database(DB_url);
 conn.Connect();
 
@@ -27,6 +32,7 @@ app.use(express.json());
 */
 app.use('/contact',contactRouter)
 app.use('/contacts',contactRouter)
+app.use('/contacts/:id',contactRouter)
 
 /*
 
