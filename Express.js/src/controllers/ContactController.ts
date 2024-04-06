@@ -42,7 +42,7 @@ index() : gets all the contact messages saved in the database
   /*
   update() : update a single contact messages saved in the database
   @return : json
-  @params : contact_if
+  @params : contact_id
    */
 
   public static async update(req: any, res: any) {
@@ -57,8 +57,20 @@ index() : gets all the contact messages saved in the database
     return res.send(contacts);
   }
 
+  
+  /*
+  delete() : deletes a contact from the database
+  @return : json
+  @params : request and response
+   */
 
+  public static async delete(req:any,res:any){
+    //get the contact id
+    let contact_id = req.params.id;
 
+    let contact = await ContactModel.deleteOne({ _id: contact_id });
+    return res.send(contact);
+  }
 
 }
 

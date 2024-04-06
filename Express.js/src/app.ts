@@ -33,6 +33,7 @@ app.use(express.json());
 app.use('/contact',contactRouter)
 app.use('/contacts',contactRouter)
 app.use('/contacts/:id',contactRouter)
+app.use('/contacts/:id',contactRouter)
 
 /*
 
