@@ -8,7 +8,7 @@ Description: this is where all the crude operation of the testimonial operation 
 import { TestimonialModel } from "../model/Testimonial";
 
 
-class TestimonialController {
+export class TestimonialController {
 
 
 
