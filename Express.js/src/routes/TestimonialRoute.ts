@@ -7,8 +7,7 @@ import { TestimonialController } from '../controllers/TestimonialController';
 const testimonialRouter  = express.Router();
 
 //creating all the crude routes here
-testimonialRouter.post('/testimonial', TestimonialController.addTestimonial);
-
+testimonialRouter.post('/', TestimonialController.addTestimonial);
 
 
 export default testimonialRouter;

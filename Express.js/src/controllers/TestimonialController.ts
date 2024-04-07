@@ -30,7 +30,7 @@ export class TestimonialController {
         testimonial.save();
         //return the response as json
 
-        return res.json(testimonial);
+        return res.send(testimonial);
 
     }
 
