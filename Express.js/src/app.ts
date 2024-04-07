@@ -35,6 +35,13 @@ app.use('/contacts',contactRouter)
 app.use('/contacts/:id',contactRouter)
 app.use('/contacts/:id',contactRouter)
 
+
+/*
+*Handle all the testimonial routes
+*/
+
+app.use('/testimonial',testimRouter);
+
 /*
 
 *Handle running the server using  port 3000 or Heroku assigned port
