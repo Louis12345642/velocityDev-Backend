@@ -26,5 +26,5 @@ class Service {
 
  //export a model of the service
 
- export const serviceModel = mongoose.model("serviceModel", Service.ServiceSchema());
- 
+ export const ServiceModel = mongoose.model("serviceModel", Service.ServiceSchema());
+
