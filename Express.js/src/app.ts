@@ -3,6 +3,7 @@ import Database from "./database/connection";
 import contactRouter from "./routes/ContactRoute";
 import cors from "cors"
 import testimonialRouter from "./routes/TestimonialRoute";
+import serviceRouter from "./routes/serviceRoute";
 const corsOptions = {
   origin: "http://127.0.0.1:5173",
 };
@@ -42,6 +43,12 @@ app.use('/contacts/:id',contactRouter)
 */
 
 app.use('/testimonial',testimonialRouter);
+
+/*
+*Handle all the service routes
+*/
+
+app.use('/service',serviceRouter);
 
 /*
 
