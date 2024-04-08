@@ -34,4 +34,19 @@ export class TestimonialController {
 
     }
 
+        /*
+    viewTestimonies() : get all the testimonials from the database
+    @return : void
+ */
+
+    public static async viewTestimonies(req:any ,res:any)
+    {
+        //using the model find method to get all the data from the database
+        let testitmonials = await  TestimonialModel.find({});
+        return  res.send(testitmonials);
+    }
+
+
+
+
 }
