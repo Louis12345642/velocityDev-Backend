@@ -43,6 +43,7 @@ app.use('/contacts/:id',contactRouter)
 */
 
 app.use('/testimonial',testimonialRouter);
+app.use('/testimonial/index',testimonialRouter);
 
 /*
 *Handle all the service routes
