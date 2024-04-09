@@ -12,5 +12,9 @@ Description: this ts script exports a route object that will be used in the mean
 //adding a service to db route
 
 serviceRouter.post('/',serviceController.addService);
+serviceRouter.get('/',serviceController.getAllServices);
+serviceRouter.get('/:id',serviceController.getServiceById);
+serviceRouter.put('/:id',serviceController.updateService);
+serviceRouter.delete('/:id',serviceController.deleteService);
 
 export default serviceRouter;

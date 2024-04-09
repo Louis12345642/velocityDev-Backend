@@ -58,6 +58,10 @@ app.use('/testimonial/:id',testimonialRouter);
 */
 
 app.use('/service',serviceRouter);
+app.use('/service/index',serviceRouter);
+app.use('/service/:id',serviceRouter);
+app.use('/service/:id',serviceRouter);
+app.use('/service/:id',serviceRouter)
 
 /*
 
