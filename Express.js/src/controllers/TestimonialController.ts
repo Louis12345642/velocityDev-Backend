@@ -50,19 +50,32 @@ deleteTestimonies() :delete a single testimonial
 @return : json
 */
 
-public static async deleteTestimonies(req: any, res: any) {
+    public static async deleteTestimonies(req: any, res: any) {
 
-    //using the model to delete a testimonial
+        //using the model to delete a testimonial
 
-    let testimial_id = req.params.id;
-    let testimonial = await  TestimonialModel.deleteOne({ _id: testimial_id });
-    //return the response as json
-    return res.send(testimonial);
+        let testimial_id = req.params.id;
+        let testimonial = await TestimonialModel.deleteOne({ _id: testimial_id });
+        //return the response as json
+        return res.send(testimonial);
+
+    }
+
+    /*
+updateTestimonies() :updates a single testimonial
+@return : json
+*/
+
+public static updateTestimonial(req:any,res:any){
+
+    //get the id of the testimonial
+
+    let testimonial_id = req.params.id;
+
+    //call the model update method to update the testimonial
+    let testimonial =  TestimonialModel.updateOne({_id:testimonial_id});
+    res.send(testimonial);
+
 
 }
-
-
-   
-
 }
-
