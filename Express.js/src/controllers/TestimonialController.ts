@@ -66,16 +66,18 @@ updateTestimonies() :updates a single testimonial
 @return : json
 */
 
-public static updateTestimonial(req:any,res:any){
+public static updateTestimonies(req:any,res:any){
 
     //get the id of the testimonial
 
     let testimonial_id = req.params.id;
+    let validated = {
+        message : req.body.message,
+        Name : req.body.Name
+    }
 
     //call the model update method to update the testimonial
-    let testimonial =  TestimonialModel.updateOne({_id:testimonial_id});
-    res.send(testimonial);
-
-
+    let testimonial =  TestimonialModel.findByIdAndUpdate(testimonial_id,validated)
+   return  res.send(testimonial);
 }
 }

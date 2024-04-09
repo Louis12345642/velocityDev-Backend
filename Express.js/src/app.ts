@@ -45,6 +45,10 @@ app.use('/contacts/:id',contactRouter)
 app.use('/testimonial',testimonialRouter);
 app.use('/testimonial/index',testimonialRouter);
 app.use('/testimonial/:id',testimonialRouter);
+app.use('/testimonial/:id',testimonialRouter);
+
+
+
 
 
 

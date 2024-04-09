@@ -10,6 +10,7 @@ const testimonialRouter  = express.Router();
 testimonialRouter.post('/', TestimonialController.addTestimonial);
 testimonialRouter.get('/',TestimonialController.viewTestimonies);
 testimonialRouter.delete('/:id',TestimonialController.deleteTestimonies);
+testimonialRouter.put('/:id',TestimonialController.updateTestimonies);
 
 
 export default testimonialRouter;
