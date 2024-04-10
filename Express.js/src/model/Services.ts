@@ -1,4 +1,5 @@
-import mongoose, { Schema } from "mongoose";
+
+import mongoose from  'mongoose';
 
 /*
 Description: this class exports the model and schema of a service 
@@ -16,7 +17,7 @@ class Service {
     //create a service model class that return a schema of  the service
 
     public static ServiceSchema() {
-        return new Schema({
+        return new mongoose.Schema({
             "serviceName": String,
             "description": String,
         })

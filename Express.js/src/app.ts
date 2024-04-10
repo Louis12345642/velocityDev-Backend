@@ -49,16 +49,12 @@ app.use('/testimonial/:id',testimonialRouter);
 
 
 
-
-
-
-
 /*
 *Handle all the service routes
 */
 
 app.use('/service',serviceRouter);
-app.use('/service/index',serviceRouter);
+app.use('/services/index',serviceRouter);
 app.use('/service/:id',serviceRouter);
 app.use('/service/:id',serviceRouter);
 app.use('/service/:id',serviceRouter)

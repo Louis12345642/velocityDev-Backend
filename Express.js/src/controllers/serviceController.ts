@@ -5,6 +5,8 @@ Description: this controller contains all the crude functionality of the service
 */
 
 import { ServiceModel } from "../model/Services";
+import { ContactModel } from "../model/ContactMessages";
+
 
 class serviceController
 {
@@ -19,6 +21,7 @@ class serviceController
         "serviceName":req.body.serviceName,
         "description":req.body.description,
     })
+    service.save();
 
     res.send(service);
 
@@ -30,13 +33,12 @@ class serviceController
     @return: json response of the entry
     */
 
-    public static async getAllServices(req:any,res:any) {
-        //get data from the services model and return as a
-
-        let services = await ServiceModel.find({});
-        res.send(services);
-    }
-
+    public static async index(req: any, res: any) {
+        const services = await ServiceModel.find({});
+        return res.json(services);
+    
+      }
+    
       
     /*
     Description: updates a single service
@@ -48,14 +50,15 @@ class serviceController
 
         let service_id = req.params.id;
         //get the service data to be updated
-        let validated ={
+        const validated ={
             "serviceName":req.body.serviceName,
             "description":req.body.description,
         }
 
         //update the record in the database
-        let service = await ServiceModel.findByIdAndUpdate(service_id,validated);
-        res.send(service);
+        const service = await ServiceModel.findByIdAndUpdate(service_id,validated);
+
+        return res.send(service);
     }
 
     /*
@@ -68,7 +71,8 @@ class serviceController
         let service_id = req.params.id;
         //remove the service from the database
         let service = ServiceModel.findByIdAndDelete(service_id);
-        res.send(service); 
+
+        return res.send(service); 
     }
 
 
@@ -82,7 +86,7 @@ class serviceController
     public static async getServiceById(req:any,res:any){
         let service_id = req.params.id;
         let service = await ServiceModel.findById(service_id);
-        res.send(service);
+        return res.send(service);
         
     }
 
