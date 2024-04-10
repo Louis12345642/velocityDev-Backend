@@ -1,6 +1,8 @@
 import express from "express";
 import Database from "./database/connection";
 import contactRouter from "./routes/ContactRoute";
+import nodemailer from "nodemailer";
+
 import cors from "cors"
 import testimonialRouter from "./routes/TestimonialRoute";
 import serviceRouter from "./routes/serviceRoute";
@@ -59,9 +61,12 @@ app.use('/service/:id',serviceRouter);
 app.use('/service/:id',serviceRouter);
 app.use('/service/:id',serviceRouter)
 
-/*
 
+
+
+/*
 *Handle running the server using  port 3000 or Heroku assigned port
 */
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`))
