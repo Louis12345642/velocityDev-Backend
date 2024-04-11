@@ -68,7 +68,48 @@ app.use('/service/:id',serviceRouter)
 
 app.post('/subscribe',(req:any,res:any)=>{
 
-  res.send("a new subscriber");
+
+
+const mailchimp = require("@mailchimp/mailchimp_marketing");
+
+mailchimp.setConfig({
+  apiKey: "b435b741c58ba5f0fbd1ce0553d08489-us17",
+  server: "us17",
+});
+
+//sub info
+
+const subscriberEmail =req.body.email
+
+const subscribingUser = {
+  firstName: req.body.firstName,
+  lastName: req.body.lastName,
+  email: subscriberEmail
+};
+
+async function run() {
+
+  const list ="c4fb834966"
+
+  const response = await mailchimp.lists.addListMember(list,{
+    email_address: subscribingUser.email,
+    status: "subscribed",
+    merge_fields: {
+      FNAME: subscribingUser.firstName,
+      LNAME: subscribingUser.lastName
+    }
+  });
+}
+
+run();
+
+
+const responseData ={
+  "message":"Successfully subscribed to our newsletter",
+  "status":200
+}
+
+return res.send(responseData)
 
 })
 
