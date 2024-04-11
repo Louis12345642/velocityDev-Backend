@@ -35,15 +35,14 @@ export class ContactController {
     <li>Name: ${req.body.name}</li>
     </ul>
     <p>${req.body.message}</p>`
-
         //nodemailer code 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
       secure: false, // Use `true` for port 465, `false` for all other ports
       auth: {
-        user: "mubaraklouis@gmail.com",
-        pass: "belv howy sreg brfp",
+        user: "luismubarak@gmail.com",
+        pass: "zclj zyzl jiyd nuuq",
       },
     });
     
@@ -51,20 +50,22 @@ export class ContactController {
     async function main() {
       // send mail with defined transport object
       const info = await transporter.sendMail({
-        from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
+        from: `Mubarak Louis 👻 <luismubarak@gmail.com>`, // sender address
         to: req.body.email, // list of receivers
-        subject: req.body.title, // Subject line
+        subject: `Hello ${req.body.name}: Your message has been received`, // Subject line
         text: req.body.message, // plain text body
-        html: `<b>${req.body.message}</b>`, // html body
+        html: `<b>Thank you ${req.body.name} for contacting velocityDev we are so thrilled to work with you</b>`, // html body
       });
     
       console.log("Message sent: %s", info.messageId);
       // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
     }
+
+    main().catch(console.error);
     
     
 
-   main().catch(console.error);
+
     return res.json(contactMsg);
   }
   /*

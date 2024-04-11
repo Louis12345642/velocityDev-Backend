@@ -64,6 +64,17 @@ app.use('/service/:id',serviceRouter)
 
 
 
+//temp code working on the subcription functionality
+
+app.post('/subscribe',(req:any,res:any)=>{
+
+  res.send("a new subscriber");
+
+})
+
+
+
+
 /*
 *Handle running the server using  port 3000 or Heroku assigned port
 */
