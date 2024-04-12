@@ -1,7 +1,7 @@
 import express from "express";
 import Database from "./database/connection";
 import contactRouter from "./routes/ContactRoute";
-import nodemailer from "nodemailer";
+require("dotenv").config();
 
 import cors from "cors"
 import testimonialRouter from "./routes/TestimonialRoute";
@@ -120,8 +120,6 @@ app.post('/subscribe', (req: any, res: any) => {
 
         }
       });
-
-
   }
 
 
@@ -158,5 +156,5 @@ app.post('/subscribe', (req: any, res: any) => {
 *Handle running the server using  port 3000 or Heroku assigned port
 */
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`))
