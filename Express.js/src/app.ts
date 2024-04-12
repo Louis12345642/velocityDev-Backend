@@ -20,7 +20,7 @@ app.use(cors(corsOptions));
 
 
 //Database connections
-const DB_url = process.env.DB_URL || 'mongodb://127.0.0.1:27017/velocityAdminDB';
+const DB_url:any= process.env.DB_URL;
 const conn = new Database(DB_url);
 conn.Connect();
 
@@ -78,7 +78,7 @@ app.post('/subscribe', (req: any, res: any) => {
 
 
   mailchimp.setConfig({
-    apiKey: "4dd82828d8da6b3d8f048047ec6289da-us17",
+    apiKey: process.env.MAILCHIMP_API_KEY,
     server: "us17",
   });
 
@@ -108,10 +108,11 @@ app.post('/subscribe', (req: any, res: any) => {
 
 
 
-    const list = "c4fb834966"
+    const list_id = process.env.MAIL_CHIMP_API_LIST_ID;
 
 
-      const response = await mailchimp.lists.addListMember(list, {
+
+      const response = await mailchimp.lists.addListMember(list_id, {
         email_address: subscribingUser.email,
         status: "subscribed",
         merge_fields: {
