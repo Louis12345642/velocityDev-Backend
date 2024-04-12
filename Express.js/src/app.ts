@@ -78,7 +78,7 @@ app.post('/subscribe', (req: any, res: any) => {
 
 
   mailchimp.setConfig({
-    apiKey: process.env.MAILCHIMP_API_KEY,
+    apiKey:process.env.MAIL_CHIMP_API_KEY,
     server: "us17",
   });
 
