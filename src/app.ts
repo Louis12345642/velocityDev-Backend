@@ -3,12 +3,8 @@ import Database from "./database/connection";
 import contactRouter from "./routes/ContactRoute";
 require("dotenv").config();
 
-import cors from "cors"
 import testimonialRouter from "./routes/TestimonialRoute";
 import serviceRouter from "./routes/serviceRoute";
-const corsOptions = {
-  origin: "http://127.0.0.1:5173",
-};
 
 
 
@@ -16,8 +12,6 @@ const corsOptions = {
 *initialing the main app
 */
 const app = express()
-app.use(cors(corsOptions));
-
 
 //Database connections
 const DB_url:any= process.env.DB_URL;
