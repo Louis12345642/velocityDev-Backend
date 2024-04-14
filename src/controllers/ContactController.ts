@@ -1,4 +1,5 @@
 import { ContactModel } from "../model/ContactMessages";
+import { sendContactEmail } from "../service/sendContactEmail";
 
 /*
   this class is where all the crude operation related to contact are set
@@ -21,6 +22,8 @@ export class ContactController {
       "email": req.body.email,
       "name": req.body.name
     });
+    //sending an alert email to the user 
+  sendContactEmail.sendEmail(req,res);
     contactMsg.save();
     return res.json(contactMsg);
   }

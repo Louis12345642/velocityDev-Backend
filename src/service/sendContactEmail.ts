@@ -12,7 +12,7 @@ import nodemailer from "nodemailer";
 
 
 
-class sendContactEmail {
+export class sendContactEmail {
     public static sendEmail(req: any, res: any) {
 
         //nodemailer code 
