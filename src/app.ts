@@ -98,14 +98,7 @@ app.post('/subscribe', (req: any, res: any) => {
 
 
   async function run() {
-
-
-
-
     const list_id = process.env.MAIL_CHIMP_API_LIST_ID;
-
-
-
       const response = await mailchimp.lists.addListMember(list_id, {
         email_address: subscribingUser.email,
         status: "subscribed",
