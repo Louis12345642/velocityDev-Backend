@@ -152,4 +152,5 @@ app.post('/subscribe', (req: any, res: any) => {
 */
 
 const PORT = process.env.PORT || 3000;
+console.log("new dot env file");
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`))
