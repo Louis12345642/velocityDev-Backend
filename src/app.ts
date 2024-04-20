@@ -6,6 +6,7 @@ require("dotenv").config();
 import testimonialRouter from "./routes/TestimonialRoute";
 import serviceRouter from "./routes/serviceRoute";
 import serviceProviderRouter from "./routes/serviceProvidersRoute";
+import cors from 'cors'; 
 
 
 
@@ -13,6 +14,9 @@ import serviceProviderRouter from "./routes/serviceProvidersRoute";
 *initialing the main app
 */
 const app = express()
+
+
+app.use(cors());
 
 //Database connections
 const DB_url:any= process.env.DB_URL;

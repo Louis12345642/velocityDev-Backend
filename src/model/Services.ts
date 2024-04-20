@@ -1,5 +1,5 @@
 
-import mongoose from  'mongoose';
+import mongoose from 'mongoose';
 
 /*
 Description: this class exports the model and schema of a service 
@@ -20,12 +20,13 @@ class Service {
         return new mongoose.Schema({
             "serviceName": String,
             "description": String,
+            "imageUri": String
         })
     }
 
 }
 
- //export a model of the service
+//export a model of the service
 
- export const ServiceModel = mongoose.model("serviceModel", Service.ServiceSchema());
+export const ServiceModel = mongoose.model("serviceModel", Service.ServiceSchema());
 

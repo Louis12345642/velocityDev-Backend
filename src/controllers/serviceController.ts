@@ -35,7 +35,7 @@ class serviceController
 
     public static async index(req: any, res: any) {
         const services = await ServiceModel.find({});
-        return res.json(services);
+        return res.send(services);
     
       }
     
@@ -53,6 +53,7 @@ class serviceController
         const validated ={
             "serviceName":req.body.serviceName,
             "description":req.body.description,
+            "imageUri":req.body.imageUri
         }
 
         //update the record in the database
