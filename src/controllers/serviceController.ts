@@ -1,7 +1,6 @@
 /*
 Description: this controller contains all the crude functionality of the service
 
-
 */
 
 import { ServiceModel } from "../model/Services";
@@ -36,7 +35,6 @@ class serviceController
     public static async index(req: any, res: any) {
         const services = await ServiceModel.find({});
         return res.send(services);
-    
       }
     
       
@@ -67,11 +65,11 @@ class serviceController
     @return: json response of the entry
     */
     
-    public static deleteService(req:any,res:any) {
+static async deleteService(req:any,res:any):Promise<void>{
         //get the id of the service from the param
         let service_id = req.params.id;
         //remove the service from the database
-        let service = ServiceModel.findByIdAndDelete(service_id);
+        let service =  await ServiceModel.findByIdAndDelete(service_id);
 
         return res.send(service); 
     }
@@ -88,7 +86,6 @@ class serviceController
         let service_id = req.params.id;
         let service = await ServiceModel.findById(service_id);
         return res.send(service);
-        
     }
 
 }

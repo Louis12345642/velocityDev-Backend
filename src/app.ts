@@ -7,6 +7,7 @@ import testimonialRouter from "./routes/TestimonialRoute";
 import serviceRouter from "./routes/serviceRoute";
 import serviceProviderRouter from "./routes/serviceProvidersRoute";
 import cors from 'cors'; 
+import userRouter from "./routes/usersRoutes";
 
 
 
@@ -33,6 +34,7 @@ app.use(express.json());
 /*
 *Handle all the contact routes
 */
+
 app.use('/contact', contactRouter)
 app.use('/contacts', contactRouter)
 app.use('/contacts/:id', contactRouter)
@@ -62,6 +64,13 @@ app.use('/service/:id', serviceRouter)
 
 
 /*
+*Handle all users routes
+*/
+app.use('/user/register', userRouter);
+app.use('/users',userRouter)
+
+
+/*  
 *Handle all the external apis services routes
 */
 
