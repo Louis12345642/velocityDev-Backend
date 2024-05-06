@@ -69,6 +69,7 @@ app.use('/service/:id', serviceRouter)
 app.use('/user/register', userRouter);
 app.use('/users',userRouter)
 app.use('/users/:id',userRouter)
+app.use('/users/:id',userRouter)
 
 
 /*  
