@@ -3,6 +3,7 @@ Description: this controller contains all the crude functionality of the user
 
 */
 
+import { promises } from "dns";
 import { userModel } from "../model/User";
 
 class userController {
@@ -24,6 +25,13 @@ class userController {
   public static async index(req: any, res: any) {
    const users =  await  userModel.find({})
     return res.send(users);
+  }
+
+  //creating a function to delete the user
+  public static async destroy(req:any,res:any):Promise<void>{
+    let user_id = req.params.id;
+    const user = await userModel.findByIdAndDelete(user_id)
+    return res.send(user)
   }
 }
 
