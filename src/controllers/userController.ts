@@ -33,6 +33,15 @@ class userController {
     const user = await userModel.findByIdAndDelete(user_id)
     return res.send(user)
   }
+
+
+
+  public static async getUserById(req:any,res:any){
+    let user_id = req.params.id;
+    let user = await userModel.findById(user_id);
+    return res.send(user);
+}
+
 }
 
 export default userController;
