@@ -1,5 +1,6 @@
 
 import mongoose from  'mongoose';
+import bcrypt from "bcrypt";
 
 /*
 method: 
@@ -14,12 +15,27 @@ class userSchema
             "name":String,
             "email":String,
             "password":String
+        }).pre('save', async function(next:any){
+
+            //create a salt for the password
+            const salt = await bcrypt.genSalt(10);
+
+            let unhashedPassword:any = this.password;
+            //hash the password
+            const hashedPassword:string = await bcrypt.hash(unhashedPassword,salt);
+            //replace the password with the hashed password
+            this.password = hashedPassword;
+
+            next()
+
         })
     }
-
 }
 
-    //creating the model
+
+
+
 export const userModel = mongoose.model("userSchema",userSchema.userSchema());
+
 
 

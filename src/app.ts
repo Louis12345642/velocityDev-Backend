@@ -8,7 +8,7 @@ import serviceRouter from "./routes/serviceRoute";
 import serviceProviderRouter from "./routes/serviceProvidersRoute";
 import cors from 'cors'; 
 import userRouter from "./routes/usersRoutes";
-
+import bcrypt from "bcrypt";
 
 
 /*
@@ -68,6 +68,7 @@ app.use('/service/:id', serviceRouter)
 */
 app.use('/user/register', userRouter);
 app.use('/users',userRouter)
+app.use('/users/:id',userRouter)
 app.use('/users/:id',userRouter)
 app.use('/users/:id',userRouter)
 

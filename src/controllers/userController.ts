@@ -42,6 +42,30 @@ class userController {
     return res.send(user);
 }
 
+
+
+    /*
+    Description: updates a single service
+    @return: json response of the entry
+    */
+
+    public static async updateUser(req:any,res:any) {
+      //Get the service id  from params
+
+      let user_id = req.params.id;
+      //get the service data to be updated
+      const validated ={
+          "name":req.body.name,
+          "email":req.body.email,
+          "password":req.body.password
+      }
+
+      //update the record in the database
+      const user = await userModel.findByIdAndUpdate(user_id,validated);
+
+      return res.send(user);
+  }
+
 }
 
 export default userController;
