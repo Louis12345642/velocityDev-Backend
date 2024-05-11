@@ -5,10 +5,24 @@ Description: this controller contains all the crude functionality of the user
 
 import { promises } from "dns";
 import { userModel } from "../model/User";
+import cookParser from "cookie-parser"
+import jwt from "jsonwebtoken"
+import { Login } from "../service/login";
 
 class userController {
   //create(): this function creates a new user in the database
   //@return json
+
+
+  //creating a token before the user is being saved in the database
+  public static createToken(id:any){
+    const token = jwt.sign({id},"secret",{
+      expiresIn: 86400
+    })
+
+    return token
+
+  }
 
   public static create(req: any, res: any) {
     let u = new userModel({
@@ -16,10 +30,17 @@ class userController {
       email: req.body.email,
       password: req.body.password,
     });
-    u.save();
 
-    res.send(u);
+    //create a cookie and send it as response on the browser
+
+    const token = userController.createToken(u._id)
+  
+    res.cookie('jwt',token,{httpOnly:true ,maxAge:86400000})
+
+    u.save();
+   return res.status(201).json(u);
   }
+
 
 
   public static async index(req: any, res: any) {

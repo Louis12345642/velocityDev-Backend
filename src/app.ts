@@ -8,14 +8,15 @@ import serviceRouter from "./routes/serviceRoute";
 import serviceProviderRouter from "./routes/serviceProvidersRoute";
 import cors from 'cors'; 
 import userRouter from "./routes/usersRoutes";
-import bcrypt from "bcrypt";
+import cookieParser from "cookie-parser";
+import { Login } from "./service/login";
 
 
 /*
 *initialing the main app
 */
 const app = express()
-
+app.use(cookieParser())
 
 app.use(cors());
 
@@ -71,6 +72,17 @@ app.use('/users',userRouter)
 app.use('/users/:id',userRouter)
 app.use('/users/:id',userRouter)
 app.use('/users/:id',userRouter)
+
+app.get('/userss/logins',async (req:any,res:any)=>{
+
+    let password = req.body.password;
+    let email = req.body.email;
+   const authUser = await Login.login(password,email);
+
+    return   res.send(authUser);
+
+})
+
 
 
 /*  

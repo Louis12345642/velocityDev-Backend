@@ -13,6 +13,8 @@ userRouter.get('/:id',userController.getUserById);
 userRouter.put('/:id',userController.updateUser);
 
 
+
+
 //all users route to be exposed here
 
 export default userRouter;
