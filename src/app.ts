@@ -22,6 +22,7 @@ app.use(cookieParser())
 
 app.use(cors());
 
+
 //Database connections
 const DB_url:any= process.env.DB_URL;
 const conn = new Database(DB_url);
@@ -39,9 +40,9 @@ app.use(express.json());
 */
 
 app.use('/contact', contactRouter)
-app.use('/contacts', contactRouter)
-app.use('/contacts/:id', contactRouter)
-app.use('/contacts/:id', contactRouter)
+app.use('/contacts', authMiddleware,contactRouter)
+app.use('/contacts/:id',authMiddleware, contactRouter)
+app.use('/contacts/:id',authMiddleware, contactRouter)
 
 
 /*
@@ -59,21 +60,23 @@ app.use('/testimonial/:id', testimonialRouter);
 *Handle all the service routes
 */
 
-app.use('/service', serviceRouter);
+app.use('/service',authMiddleware,serviceRouter);
 app.use('/services/index', serviceRouter);
-app.use('/service/:id', serviceRouter);
-app.use('/service/:id', serviceRouter);
-app.use('/service/:id', serviceRouter)
+app.use('/service/:id', authMiddleware,serviceRouter);
+app.use('/service/:id',authMiddleware, serviceRouter);
+app.use('/service/:id', authMiddleware,serviceRouter)
 
 
 /*
 *Handle all users routes
 */
-app.use('/user/register', userRouter);
+
+app.use('/user/register',authMiddleware, userRouter);
 app.use('/users',authMiddleware,userRouter)
-app.use('/users/:id',userRouter)
-app.use('/users/:id',userRouter)
-app.use('/users/:id',userRouter)
+app.use('/users/:id',authMiddleware,userRouter)
+app.use('/users/:id',authMiddleware,userRouter)
+app.use('/users/:id',authMiddleware,userRouter)
+
 
 
 
