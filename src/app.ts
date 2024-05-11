@@ -10,6 +10,8 @@ import cors from 'cors';
 import userRouter from "./routes/usersRoutes";
 import cookieParser from "cookie-parser";
 import { Login } from "./service/login";
+import userController from "./controllers/userController";
+import { authMiddleware } from "./middleware/authMiddleware";
 
 
 /*
@@ -68,22 +70,31 @@ app.use('/service/:id', serviceRouter)
 *Handle all users routes
 */
 app.use('/user/register', userRouter);
-app.use('/users',userRouter)
+app.use('/users',authMiddleware,userRouter)
 app.use('/users/:id',userRouter)
 app.use('/users/:id',userRouter)
 app.use('/users/:id',userRouter)
 
-app.get('/userss/logins',async (req:any,res:any)=>{
+
+
+app.post('/userss/logins',async (req:any,res:any)=>{
 
     let password = req.body.password;
     let email = req.body.email;
-   const authUser = await Login.login(password,email);
 
+
+   const authUser = await Login.login(password,email);
+   if(authUser){
+        //get the access token
+   const token = userController.createToken(authUser._id)
+   res.cookie('jwt',token,{httpOnly:true ,maxAge:86400000})
     return   res.send(authUser);
+   }
+   else{
+    return res.status(401).send("invalid authenication");
+   }
 
 })
-
-
 
 /*  
 *Handle all the external apis services routes
