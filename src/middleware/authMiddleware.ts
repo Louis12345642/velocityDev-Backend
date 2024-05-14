@@ -5,8 +5,17 @@ export function authMiddleware(req:any,res:any,next:any){
 
     const token = req.cookies.jwt;
 
-    if(token){
-        Jwt.verify(token,"secret" as string,(err:any,decodedToken:any)=>{
+    const authHeader = req.headers.authorization;
+
+
+    const Token = authHeader.split(' ')[1];
+
+
+
+
+
+    if( Token){
+        Jwt.verify(Token,"secret" as string,(err:any,decodedToken:any)=>{
             if(err){
                 res.send("erro in auth")
             }
@@ -21,6 +30,4 @@ export function authMiddleware(req:any,res:any,next:any){
         res.status(401).json({message:"Unauthorized"})
     }
    
-
-
 }

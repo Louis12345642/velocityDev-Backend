@@ -12,6 +12,7 @@ import cookieParser from "cookie-parser";
 import { Login } from "./service/login";
 import userController from "./controllers/userController";
 import { authMiddleware } from "./middleware/authMiddleware";
+import { sign } from "crypto";
 
 
 /*
@@ -39,7 +40,7 @@ app.use(express.json());
 *Handle all the contact routes
 */
 
-app.use('/contact', contactRouter)
+app.use('/contact',authMiddleware, contactRouter)
 app.use('/contacts', authMiddleware,contactRouter)
 app.use('/contacts/:id',authMiddleware, contactRouter)
 app.use('/contacts/:id',authMiddleware, contactRouter)
@@ -90,8 +91,10 @@ app.post('/userss/logins',async (req:any,res:any)=>{
    if(authUser){
         //get the access token
    const token = userController.createToken(authUser._id)
-   res.cookie('jwt',token,{httpOnly:true ,maxAge:86400000})
-    return   res.send(authUser);
+
+     //  res.send(authUser);
+     res.cookie('jwt',token,{httpOnly:false ,maxAge:86400000,sign:true})
+     return res.status(200).send("login successful");
    }
    else{
     return res.status(401).send("invalid authenication");
