@@ -90,7 +90,6 @@ app.use('/users/:id',authMiddleware,userRouter)
 */
 app.get('/authUser', async (req:any,res:any)=>{
 
-
   try
 {
   const authHeader = req.headers.authorization;
@@ -111,8 +110,6 @@ app.get('/authUser', async (req:any,res:any)=>{
           
         }
     })
-
-  
 }
 
 else{
