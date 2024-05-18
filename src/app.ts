@@ -13,6 +13,9 @@ import { Login } from "./service/login";
 import userController from "./controllers/userController";
 import { authMiddleware } from "./middleware/authMiddleware";
 import { sign } from "crypto";
+import { checkAuthUser } from "./middleware/checkAuthUser";
+import { userModel } from "./model/User";
+import  Jwt  from "jsonwebtoken";
 
 
 /*
@@ -81,6 +84,52 @@ app.use('/users/:id',authMiddleware,userRouter)
 
 
 
+
+/*  
+*Handle all the that get the authenicated user
+*/
+app.get('/authUser', async (req:any,res:any)=>{
+
+
+  try
+{
+  const authHeader = req.headers.authorization;
+  const Token = authHeader.split(' ')[1];
+
+
+  if( Token){
+    Jwt.verify(Token,"secret" as string,async (err:any,decodedToken:any)=>{
+        if(err){
+            res.send("erro in auth")
+        }
+        else{
+            console.log(decodedToken);
+            const user_id = decodedToken.id
+            const user =  await userModel.findById(user_id);
+        
+            return  res.send(user);
+          
+        }
+    })
+
+  
+}
+
+else{
+  return  res.status(401).json({message:"Unauthorized"})
+
+}
+}
+catch{
+  return res.send("unauthorised");
+}
+
+});
+
+
+/*  
+*Handle all the logout routes
+*/
 app.post('/userss/logins',async (req:any,res:any)=>{
 
     let password = req.body.password;
@@ -94,11 +143,24 @@ app.post('/userss/logins',async (req:any,res:any)=>{
 
      //  res.send(authUser);
      res.cookie('jwt',token,{httpOnly:false ,maxAge:86400000,sign:true})
-     return res.status(200).send("login successful");
+     return res.status(200).send({
+      status:200,
+      isAuth:true
+     });
    }
    else{
     return res.status(401).send("invalid authenication");
    }
+
+})
+
+/*  
+*Handle all the logout routes
+*/
+app.get('/userss/logout',async (req:any,res:any)=>{
+ res.cookie('jwt',"",{httpOnly:false ,maxAge:1,sign:true})
+ return res.send("logout");
+ 
 
 })
 

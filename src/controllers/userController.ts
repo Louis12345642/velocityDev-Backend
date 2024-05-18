@@ -9,6 +9,7 @@ import cookParser from "cookie-parser"
 import jwt from "jsonwebtoken"
 import { Login } from "../service/login";
 
+
 class userController {
   //create(): this function creates a new user in the database
   //@return json
@@ -45,14 +46,17 @@ class userController {
 
   public static async index(req: any, res: any) {
    const users =  await  userModel.find({})
-    return res.send(users);
+    return res.send({"users":users,
+      "isAuth":true
+    });
   }
 
+  
   //creating a function to delete the user
   public static async destroy(req:any,res:any):Promise<void>{
     let user_id = req.params.id;
     const user = await userModel.findByIdAndDelete(user_id)
-    return res.send(user)
+    return res.json(user)
   }
 
 
@@ -63,6 +67,34 @@ class userController {
     return res.send(user);
 }
 
+
+
+public static async getAuthUser(req:any,res:any){
+
+  const authHeader = req.headers.authorization;
+  const Token = authHeader.split(' ')[1];
+
+
+//   if( Token){
+//     Jwt.verify(Token,"secret" as string,(err:any,decodedToken:any)=>{
+//         if(err){
+//             res.send("erro in auth")
+//         }
+//         else{
+//             console.log(decodedToken);
+//             // const user = userModel.findById({decodedToken.})
+
+//           return  res.send(decodedToken);
+          
+//         }
+//     })
+// }
+
+//    return  res.status(401).json({message:"Unauthorized"})
+
+return res.send("hello debuging");
+
+}
 
 
     /*
