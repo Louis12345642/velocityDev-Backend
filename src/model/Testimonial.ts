@@ -9,7 +9,7 @@ import mongoose, { Schema } from "mongoose";
 class Testimonial{
 
     public static Testimonial()
-    {
+    {   
         //creating the schema for the testimonial 
       return  new Schema({
           "message":String,

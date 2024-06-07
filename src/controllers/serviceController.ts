@@ -5,8 +5,7 @@ Description: this controller contains all the crude functionality of the service
 
 import { ServiceModel } from "../model/Services";
 import { ContactModel } from "../model/ContactMessages";
-
-
+    
 class serviceController
 {
     /*

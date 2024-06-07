@@ -17,10 +17,9 @@ export function authMiddleware(req:any,res:any,next:any){
                 res.send("erro in auth")
             }
             else{
-                console.log(decodedToken.id);
+                console.log(decodedToken);
                 // const user = userModel.findById({decodedToken})
 
-                
                 next()
             }
         })

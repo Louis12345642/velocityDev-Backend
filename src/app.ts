@@ -24,7 +24,11 @@ import  Jwt  from "jsonwebtoken";
 const app = express()
 app.use(cookieParser())
 
-app.use(cors());
+app.use(cors(
+  {
+ 
+  }
+));
 
 
 //Database connections
@@ -43,8 +47,8 @@ app.use(express.json());
 *Handle all the contact routes
 */
 
-app.use('/contact',authMiddleware, contactRouter)
-app.use('/contacts', authMiddleware,contactRouter)
+app.use('/contact', contactRouter)
+app.use('/contacts',contactRouter)
 app.use('/contacts/:id',authMiddleware, contactRouter)
 app.use('/contacts/:id',authMiddleware, contactRouter)
 
@@ -75,8 +79,8 @@ app.use('/service/:id', authMiddleware,serviceRouter)
 *Handle all users routes
 */
 
-app.use('/user/register',authMiddleware, userRouter);
-app.use('/users',authMiddleware,userRouter)
+app.use('/user/register',userRouter);
+app.use('/users',userRouter)
 app.use('/users/:id',authMiddleware,userRouter)
 app.use('/users/:id',authMiddleware,userRouter)
 app.use('/users/:id',authMiddleware,userRouter)
@@ -129,26 +133,26 @@ catch{
 */
 app.post('/userss/logins',async (req:any,res:any)=>{
 
+
+
     let password = req.body.password;
     let email = req.body.email;
 
 
-   const authUser = await Login.login(password,email);
-   if(authUser){
-        //get the access token
-   const token = userController.createToken(authUser._id)
 
-     //  res.send(authUser);
-     res.cookie('jwt',token,{httpOnly:false ,maxAge:86400000,sign:true})
-     return res.status(200).send({
-      status:200,
-      isAuth:true
-     });
-   }
-   else{
-    return res.status(401).send("invalid authenication");
-   }
 
+  //authenicate the user
+  const authUser = await Login.login(password,email);
+  if(authUser){
+       //get the access token
+  const token = userController.createToken(authUser._id)
+
+    res.cookie('jwt',token,{httpOnly:false ,maxAge:86400000,sign:true})
+    return res.status(200).send({
+     status:200,
+     isAuth:true
+    });
+  }
 })
 
 /*  
