@@ -18,11 +18,11 @@ class Database {
 
     //creating the connect method
 
-    public Connect() {
+    public async Connect() {
 
 
         try {
-            mongoose.connect(this.dbUrl)
+           await mongoose.connect(this.dbUrl)
             console.log("connected successfully");
         }
         catch (error:any) {
