@@ -129,7 +129,7 @@ catch{
 
 
 /*  
-*Handle all the logout routes
+*Handle all the login routes
 */
 app.post('/userss/logins',async (req:any,res:any)=>{
 
@@ -137,6 +137,9 @@ app.post('/userss/logins',async (req:any,res:any)=>{
 
     let password = req.body.password;
     let email = req.body.email;
+
+
+    console.log(password)
 
 
 
