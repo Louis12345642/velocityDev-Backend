@@ -48,7 +48,7 @@ app.use(express.json());
 */
 
 app.use('/contact', contactRouter)
-app.use('/contacts',contactRouter)
+app.use('/contacts',authMiddleware,contactRouter)
 app.use('/contacts/:id',authMiddleware, contactRouter)
 app.use('/contacts/:id',authMiddleware, contactRouter)
 
@@ -79,8 +79,8 @@ app.use('/service/:id', authMiddleware,serviceRouter)
 *Handle all users routes
 */
 
-app.use('/user/register',userRouter);
-app.use('/users',userRouter)
+app.use('/user/register',authMiddleware,userRouter);
+app.use('/users',authMiddleware,userRouter)
 app.use('/users/:id',authMiddleware,userRouter)
 app.use('/users/:id',authMiddleware,userRouter)
 app.use('/users/:id',authMiddleware,userRouter)
