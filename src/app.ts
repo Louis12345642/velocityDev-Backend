@@ -139,8 +139,6 @@ app.post('/userss/logins',async (req:any,res:any)=>{
     let email = req.body.email;
 
 
-    console.log(password)
-
 
 
 

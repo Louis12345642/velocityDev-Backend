@@ -18,22 +18,21 @@ export class Login{
       try{
         //find the user in the database
         let user:any= await userModel.findOne({email});
+
+        if(!user){
+          console.log("user does not exit")
+        }
+
+        else{
         //if the user exists login compare the password
         const auth = await bcypt.compare(password,user.password);
-        
-          //login the user here
-     
-
-          if(auth){
-            return user;
-          }
-          else{
-
-            //password is incorrect
-           return errors.push({message:"invalid password"})
-
-          }
-
+        if(auth){
+          return user;
+        }
+        else{
+          console.log("password is incorrect")
+        }
+        }
       }
      catch{
       //user not found
