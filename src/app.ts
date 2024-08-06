@@ -133,14 +133,8 @@ catch{
 */
 app.post('/userss/logins',async (req:any,res:any)=>{
 
-
-
     let password = req.body.password;
     let email = req.body.email;
-
-
-
-
 
   //authenicate the user
   const authUser = await Login.login(password,email);

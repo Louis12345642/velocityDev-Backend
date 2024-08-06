@@ -36,7 +36,6 @@ index() : gets all the contact messages saved in the database
   public static async index(req: any, res: any) {
     const contacts = await ContactModel.find({});
     return res.json(contacts);
-
   }
 
 
